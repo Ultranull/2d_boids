@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bf2emdoguws4c"]
+
+[ext_resource type="Script" path="res://src/boid.gd" id="1_x5sgu"]
+[ext_resource type="Texture2D" uid="uid://w6jp7q40avpc" path="res://rsrc/boid.png" id="2_nnxwy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gpibl"]
+radius = 101.7
+
+[node name="boid" type="CharacterBody2D" groups=["Boid"]]
+script = ExtResource("1_x5sgu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_nnxwy")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-6, -6, -2, 0, -6, 6, 6, 0)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_gpibl")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
