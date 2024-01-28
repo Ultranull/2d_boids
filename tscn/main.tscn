@@ -13,22 +13,48 @@ unique_name_in_owner = true
 
 [node name="Settings" type="PanelContainer" parent="."]
 unique_name_in_owner = true
-offset_right = 293.0
-offset_bottom = 124.0
+offset_right = 296.0
+offset_bottom = 24.0
+size_flags_vertical = 2
 
-[node name="TabContainer" type="TabContainer" parent="Settings"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Settings/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="Settings/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Hide:"
+
+[node name="HideSwitch" type="CheckButton" parent="Settings/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../../SettingsBox/TabContainer/Boids/CoherenceSlide")
+focus_next = NodePath("../../SettingsBox/TabContainer/Boids/CoherenceSlide")
+
+[node name="SettingsBox" type="MarginContainer" parent="Settings/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TabContainer" type="TabContainer" parent="Settings/VBoxContainer/SettingsBox"]
 layout_mode = 2
 
-[node name="Boids" type="GridContainer" parent="Settings/TabContainer"]
+[node name="Boids" type="GridContainer" parent="Settings/VBoxContainer/SettingsBox/TabContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 columns = 2
 
-[node name="Label2" type="Label" parent="Settings/TabContainer/Boids"]
+[node name="Label2" type="Label" parent="Settings/VBoxContainer/SettingsBox/TabContainer/Boids"]
 layout_mode = 2
 text = "Coherence:"
 
-[node name="CoherenceSlide" type="HSlider" parent="Settings/TabContainer/Boids"]
+[node name="CoherenceSlide" type="HSlider" parent="Settings/VBoxContainer/SettingsBox/TabContainer/Boids"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -36,67 +62,68 @@ max_value = 1.0
 step = 0.001
 value = 0.5
 
-[node name="Label3" type="Label" parent="Settings/TabContainer/Boids"]
+[node name="Label3" type="Label" parent="Settings/VBoxContainer/SettingsBox/TabContainer/Boids"]
 layout_mode = 2
 text = "Seperation:"
 
-[node name="SeperationSlide" type="HSlider" parent="Settings/TabContainer/Boids"]
+[node name="SeperationSlide" type="HSlider" parent="Settings/VBoxContainer/SettingsBox/TabContainer/Boids"]
 unique_name_in_owner = true
 layout_mode = 2
 max_value = 1.0
 step = 0.001
 value = 0.5
 
-[node name="Label4" type="Label" parent="Settings/TabContainer/Boids"]
+[node name="Label4" type="Label" parent="Settings/VBoxContainer/SettingsBox/TabContainer/Boids"]
 layout_mode = 2
 text = "Alignment:"
 
-[node name="AlignSlide" type="HSlider" parent="Settings/TabContainer/Boids"]
+[node name="AlignSlide" type="HSlider" parent="Settings/VBoxContainer/SettingsBox/TabContainer/Boids"]
 unique_name_in_owner = true
 layout_mode = 2
 max_value = 1.0
 step = 0.001
 value = 0.5
 
-[node name="Label6" type="Label" parent="Settings/TabContainer/Boids"]
+[node name="Label6" type="Label" parent="Settings/VBoxContainer/SettingsBox/TabContainer/Boids"]
 layout_mode = 2
 text = "Speed:"
 
-[node name="BoidSpeedSlide" type="HSlider" parent="Settings/TabContainer/Boids"]
+[node name="BoidSpeedSlide" type="HSlider" parent="Settings/VBoxContainer/SettingsBox/TabContainer/Boids"]
 unique_name_in_owner = true
 layout_mode = 2
 max_value = 30.0
 value = 5.0
 
-[node name="Label" type="Label" parent="Settings/TabContainer/Boids"]
+[node name="Label" type="Label" parent="Settings/VBoxContainer/SettingsBox/TabContainer/Boids"]
 layout_mode = 2
 text = "Boids:"
 
-[node name="BoidSpin" type="SpinBox" parent="Settings/TabContainer/Boids"]
+[node name="BoidSpin" type="SpinBox" parent="Settings/VBoxContainer/SettingsBox/TabContainer/Boids"]
 unique_name_in_owner = true
 layout_mode = 2
+focus_mode = 2
 max_value = 300.0
 
-[node name="Label5" type="Label" parent="Settings/TabContainer/Boids"]
+[node name="Label5" type="Label" parent="Settings/VBoxContainer/SettingsBox/TabContainer/Boids"]
 layout_mode = 2
 text = "Vision Radius:"
 
-[node name="VisionSlide" type="HSlider" parent="Settings/TabContainer/Boids"]
+[node name="VisionSlide" type="HSlider" parent="Settings/VBoxContainer/SettingsBox/TabContainer/Boids"]
 unique_name_in_owner = true
 layout_mode = 2
 max_value = 500.0
 value = 100.0
 
-[node name="Hunter" type="GridContainer" parent="Settings/TabContainer"]
+[node name="Hunter" type="GridContainer" parent="Settings/VBoxContainer/SettingsBox/TabContainer"]
 visible = false
 layout_mode = 2
 columns = 2
 
-[node name="Label2" type="Label" parent="Settings/TabContainer/Hunter"]
+[node name="Label2" type="Label" parent="Settings/VBoxContainer/SettingsBox/TabContainer/Hunter"]
 layout_mode = 2
 text = "Coherence:"
 
-[node name="HunterCoherenceSlide" type="HSlider" parent="Settings/TabContainer/Hunter"]
+[node name="HunterCoherenceSlide" type="HSlider" parent="Settings/VBoxContainer/SettingsBox/TabContainer/Hunter"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -104,92 +131,94 @@ max_value = 1.0
 step = 0.001
 value = 0.5
 
-[node name="Label3" type="Label" parent="Settings/TabContainer/Hunter"]
+[node name="Label3" type="Label" parent="Settings/VBoxContainer/SettingsBox/TabContainer/Hunter"]
 layout_mode = 2
 text = "Seperation:"
 
-[node name="HunterSeperationSlide" type="HSlider" parent="Settings/TabContainer/Hunter"]
+[node name="HunterSeperationSlide" type="HSlider" parent="Settings/VBoxContainer/SettingsBox/TabContainer/Hunter"]
 unique_name_in_owner = true
 layout_mode = 2
 max_value = 1.0
 step = 0.001
 value = 0.5
 
-[node name="Label4" type="Label" parent="Settings/TabContainer/Hunter"]
+[node name="Label4" type="Label" parent="Settings/VBoxContainer/SettingsBox/TabContainer/Hunter"]
 layout_mode = 2
 text = "Alignment:"
 
-[node name="HunterAlignSlide" type="HSlider" parent="Settings/TabContainer/Hunter"]
+[node name="HunterAlignSlide" type="HSlider" parent="Settings/VBoxContainer/SettingsBox/TabContainer/Hunter"]
 unique_name_in_owner = true
 layout_mode = 2
 max_value = 1.0
 step = 0.001
 value = 0.5
 
-[node name="Label6" type="Label" parent="Settings/TabContainer/Hunter"]
+[node name="Label6" type="Label" parent="Settings/VBoxContainer/SettingsBox/TabContainer/Hunter"]
 layout_mode = 2
 text = "Speed:"
 
-[node name="HunterSpeedSlide" type="HSlider" parent="Settings/TabContainer/Hunter"]
+[node name="HunterSpeedSlide" type="HSlider" parent="Settings/VBoxContainer/SettingsBox/TabContainer/Hunter"]
 unique_name_in_owner = true
 layout_mode = 2
 max_value = 30.0
 value = 3.0
 
-[node name="Label" type="Label" parent="Settings/TabContainer/Hunter"]
+[node name="Label" type="Label" parent="Settings/VBoxContainer/SettingsBox/TabContainer/Hunter"]
 layout_mode = 2
 text = "Hunters:"
 
-[node name="HunterSpin" type="SpinBox" parent="Settings/TabContainer/Hunter"]
+[node name="HunterSpin" type="SpinBox" parent="Settings/VBoxContainer/SettingsBox/TabContainer/Hunter"]
 unique_name_in_owner = true
 layout_mode = 2
 max_value = 300.0
 
-[node name="Other" type="GridContainer" parent="Settings/TabContainer"]
+[node name="Other" type="GridContainer" parent="Settings/VBoxContainer/SettingsBox/TabContainer"]
 visible = false
 layout_mode = 2
 columns = 2
 
-[node name="MouseAlignCheck" type="CheckBox" parent="Settings/TabContainer/Other"]
+[node name="MouseAlignCheck" type="CheckBox" parent="Settings/VBoxContainer/SettingsBox/TabContainer/Other"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Mouse Align"
 
-[node name="MouseAvoidCheck" type="CheckBox" parent="Settings/TabContainer/Other"]
+[node name="MouseAvoidCheck" type="CheckBox" parent="Settings/VBoxContainer/SettingsBox/TabContainer/Other"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Mouse Avoid"
 
-[node name="Label6" type="Label" parent="Settings/TabContainer/Other"]
+[node name="Label6" type="Label" parent="Settings/VBoxContainer/SettingsBox/TabContainer/Other"]
 layout_mode = 2
 text = "Mouse Effect Radius:"
 
-[node name="MouseRadius" type="HSlider" parent="Settings/TabContainer/Other"]
+[node name="MouseRadius" type="HSlider" parent="Settings/VBoxContainer/SettingsBox/TabContainer/Other"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 max_value = 500.0
 value = 100.0
 
-[node name="CheckBox" type="CheckBox" parent="Settings/TabContainer/Other"]
+[node name="CheckBox" type="CheckBox" parent="Settings/VBoxContainer/SettingsBox/TabContainer/Other"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Loop walls"
 
-[connection signal="drag_ended" from="Settings/TabContainer/Boids/CoherenceSlide" to="." method="_on_coherence_slide_drag_ended"]
-[connection signal="drag_ended" from="Settings/TabContainer/Boids/SeperationSlide" to="." method="_on_seperation_slide_drag_ended"]
-[connection signal="drag_ended" from="Settings/TabContainer/Boids/AlignSlide" to="." method="_on_align_slide_drag_ended"]
-[connection signal="drag_ended" from="Settings/TabContainer/Boids/BoidSpeedSlide" to="." method="_on_boid_speed_slide_drag_ended"]
-[connection signal="value_changed" from="Settings/TabContainer/Boids/BoidSpin" to="." method="_on_boid_spin_value_changed"]
-[connection signal="drag_ended" from="Settings/TabContainer/Boids/VisionSlide" to="." method="_on_vision_slide_drag_ended"]
-[connection signal="drag_started" from="Settings/TabContainer/Boids/VisionSlide" to="." method="_on_vision_slide_drag_started"]
-[connection signal="value_changed" from="Settings/TabContainer/Boids/VisionSlide" to="." method="_on_vision_slide_value_changed"]
-[connection signal="drag_ended" from="Settings/TabContainer/Hunter/HunterCoherenceSlide" to="." method="_on_hunter_coherence_slide_drag_ended"]
-[connection signal="drag_ended" from="Settings/TabContainer/Hunter/HunterSeperationSlide" to="." method="_on_hunter_seperation_slide_drag_ended"]
-[connection signal="drag_ended" from="Settings/TabContainer/Hunter/HunterAlignSlide" to="." method="_on_hunter_align_slide_drag_ended"]
-[connection signal="drag_ended" from="Settings/TabContainer/Hunter/HunterSpeedSlide" to="." method="_on_hunter_speed_slide_drag_ended"]
-[connection signal="value_changed" from="Settings/TabContainer/Hunter/HunterSpin" to="." method="_on_hunter_spin_value_changed"]
-[connection signal="toggled" from="Settings/TabContainer/Other/MouseAlignCheck" to="." method="_on_mouse_align_check_toggled"]
-[connection signal="toggled" from="Settings/TabContainer/Other/MouseAvoidCheck" to="." method="_on_mouse_avoid_check_toggled"]
-[connection signal="drag_ended" from="Settings/TabContainer/Other/MouseRadius" to="." method="_on_mouse_radius_drag_ended"]
-[connection signal="toggled" from="Settings/TabContainer/Other/CheckBox" to="." method="_on_check_box_toggled"]
+[connection signal="toggled" from="Settings/VBoxContainer/HBoxContainer/HideSwitch" to="." method="_on_hide_switch_toggled"]
+[connection signal="changed" from="Settings/VBoxContainer/SettingsBox/TabContainer/Boids/CoherenceSlide" to="." method="_on_coherence_slide_changed"]
+[connection signal="drag_ended" from="Settings/VBoxContainer/SettingsBox/TabContainer/Boids/CoherenceSlide" to="." method="_on_coherence_slide_drag_ended"]
+[connection signal="drag_ended" from="Settings/VBoxContainer/SettingsBox/TabContainer/Boids/SeperationSlide" to="." method="_on_seperation_slide_drag_ended"]
+[connection signal="drag_ended" from="Settings/VBoxContainer/SettingsBox/TabContainer/Boids/AlignSlide" to="." method="_on_align_slide_drag_ended"]
+[connection signal="drag_ended" from="Settings/VBoxContainer/SettingsBox/TabContainer/Boids/BoidSpeedSlide" to="." method="_on_boid_speed_slide_drag_ended"]
+[connection signal="value_changed" from="Settings/VBoxContainer/SettingsBox/TabContainer/Boids/BoidSpin" to="." method="_on_boid_spin_value_changed"]
+[connection signal="drag_ended" from="Settings/VBoxContainer/SettingsBox/TabContainer/Boids/VisionSlide" to="." method="_on_vision_slide_drag_ended"]
+[connection signal="drag_started" from="Settings/VBoxContainer/SettingsBox/TabContainer/Boids/VisionSlide" to="." method="_on_vision_slide_drag_started"]
+[connection signal="value_changed" from="Settings/VBoxContainer/SettingsBox/TabContainer/Boids/VisionSlide" to="." method="_on_vision_slide_value_changed"]
+[connection signal="drag_ended" from="Settings/VBoxContainer/SettingsBox/TabContainer/Hunter/HunterCoherenceSlide" to="." method="_on_hunter_coherence_slide_drag_ended"]
+[connection signal="drag_ended" from="Settings/VBoxContainer/SettingsBox/TabContainer/Hunter/HunterSeperationSlide" to="." method="_on_hunter_seperation_slide_drag_ended"]
+[connection signal="drag_ended" from="Settings/VBoxContainer/SettingsBox/TabContainer/Hunter/HunterAlignSlide" to="." method="_on_hunter_align_slide_drag_ended"]
+[connection signal="drag_ended" from="Settings/VBoxContainer/SettingsBox/TabContainer/Hunter/HunterSpeedSlide" to="." method="_on_hunter_speed_slide_drag_ended"]
+[connection signal="value_changed" from="Settings/VBoxContainer/SettingsBox/TabContainer/Hunter/HunterSpin" to="." method="_on_hunter_spin_value_changed"]
+[connection signal="toggled" from="Settings/VBoxContainer/SettingsBox/TabContainer/Other/MouseAlignCheck" to="." method="_on_mouse_align_check_toggled"]
+[connection signal="toggled" from="Settings/VBoxContainer/SettingsBox/TabContainer/Other/MouseAvoidCheck" to="." method="_on_mouse_avoid_check_toggled"]
+[connection signal="drag_ended" from="Settings/VBoxContainer/SettingsBox/TabContainer/Other/MouseRadius" to="." method="_on_mouse_radius_drag_ended"]
+[connection signal="toggled" from="Settings/VBoxContainer/SettingsBox/TabContainer/Other/CheckBox" to="." method="_on_check_box_toggled"]

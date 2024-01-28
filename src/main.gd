@@ -6,9 +6,10 @@ const HUNTER = preload("res://tscn/hunter.tscn")
 var dragging = false
 var all_boids = []
 var all_hunters = []
-
+		
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Settings/VBoxContainer/SettingsBox/TabContainer.get_tab_bar().grab_focus()
 	Globals.Coherence = %CoherenceSlide.value
 	Globals.Seperation = %SeperationSlide.value
 	Globals.Alignment = %AlignSlide.value
@@ -28,6 +29,16 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	queue_redraw()
+	Globals.HunterCoherence = %HunterCoherenceSlide.value
+	Globals.HunterSeperation = %HunterSeperationSlide.value
+	Globals.HunterAlignment = %HunterAlignSlide.value
+	Globals.BoidSpeed = %BoidSpeedSlide.value
+	Globals.HunterSpeed = %HunterSpeedSlide.value
+	Globals.Coherence = %CoherenceSlide.value
+	Globals.Seperation = %SeperationSlide.value
+	Globals.Alignment = %AlignSlide.value
+	Globals.VisionRadius = %VisionSlide.value
+	Globals.MouseRadius = %MouseRadius.value
 
 func _draw():
 	if dragging and len(all_boids):
@@ -56,15 +67,6 @@ func spawn_boid():
 	all_boids += [boid]
 	%AllBoids.add_child(boid)
 	
-func _on_coherence_slide_drag_ended(value_changed):
-	Globals.Coherence = %CoherenceSlide.value
-	
-func _on_seperation_slide_drag_ended(value_changed):
-	Globals.Seperation = %SeperationSlide.value
-
-func _on_align_slide_drag_ended(value_changed):
-	Globals.Alignment = %AlignSlide.value
-
 func _on_mouse_align_check_toggled(toggled_on):
 	Globals.MouseAttracts = toggled_on
 
@@ -78,23 +80,8 @@ func _on_vision_slide_drag_ended(value_changed: bool) -> void:
 func _on_vision_slide_drag_started() -> void:
 	dragging = true
 
-func _on_vision_slide_value_changed(value: float) -> void:
-	Globals.VisionRadius = %VisionSlide.value
-
-func _on_mouse_radius_drag_ended(value_changed: bool) -> void:
-	Globals.MouseRadius = %MouseRadius.value
-
 func _on_check_box_toggled(toggled_on: bool) -> void:
 	Globals.Looped = toggled_on
-
-func _on_hunter_coherence_slide_drag_ended(value_changed: bool) -> void:
-	Globals.HunterCoherence = %HunterCoherenceSlide.value
-
-func _on_hunter_seperation_slide_drag_ended(value_changed: bool) -> void:
-	Globals.HunterSeperation = %HunterSeperationSlide.value
-
-func _on_hunter_align_slide_drag_ended(value_changed: bool) -> void:
-	Globals.HunterAlignment = %HunterAlignSlide.value
 
 func _on_hunter_spin_value_changed(value: float) -> void:
 	var delta = len(all_hunters) - value
@@ -118,8 +105,10 @@ func _on_boid_spin_value_changed(value: float) -> void:
 		for i in range(abs(delta)):
 			spawn_boid()
 
-func _on_hunter_speed_slide_drag_ended(value_changed: bool) -> void:
-	Globals.HunterSpeed = %HunterSpeedSlide.value
+func _on_hide_switch_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		%SettingsBox.hide()
+	else:
+		%SettingsBox.show()
+		
 
-func _on_boid_speed_slide_drag_ended(value_changed: bool) -> void:
-	Globals.BoidSpeed = %BoidSpeedSlide.value
