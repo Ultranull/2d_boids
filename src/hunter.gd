@@ -51,10 +51,10 @@ func _physics_process(_delta):
 	
 	if not Globals.Looped:
 		var distEdge = DistFromEdge()
-		if distEdge > 0 and distEdge < 20:
-			# if the hunter is too close to the edge of the screen 
+		if distEdge > 0 and distEdge < 50:
+			# if the boid is too close to the edge of the screen 
 			# add a force pointing into the center of the screen
-			accel += ((get_viewport().get_visible_rect().size/2) - position) 
+			accel += ((get_viewport().get_visible_rect().size/2) - position).normalized() * (50/distEdge)
 	
 	# add the acceleration to the vecocity, but dont allow the hunter to move faster then the speed
 	velocity = (velocity + accel).normalized() * Globals.HunterSpeed

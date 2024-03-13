@@ -8,6 +8,8 @@ var boids_around = []
 var hunters_around = []
 
 func _physics_process(_delta):
+	var praySpeedBoost = 0
+	
 	# the direction to the average center of the sorounding boids
 	var center = Vector2() 
 	# the average direction of the sorounding boids
@@ -55,10 +57,10 @@ func _physics_process(_delta):
 	
 	if not Globals.Looped:
 		var distEdge = DistFromEdge()
-		if distEdge > 0 and distEdge < 20:
+		if distEdge > 0 and distEdge < 50:
 			# if the boid is too close to the edge of the screen 
 			# add a force pointing into the center of the screen
-			accel += ((get_viewport().get_visible_rect().size/2) - position) 
+			accel += ((get_viewport().get_visible_rect().size/2) - position).normalized() * (50/distEdge)
 	
 	if Globals.MouseAvoid:
 		if mouse_dist > 0 and mouse_dist < Globals.MouseRadius:
@@ -70,8 +72,12 @@ func _physics_process(_delta):
 			# if the boid is too far away from the mouse include a force to get closer to it
 			accel += position.direction_to(get_global_mouse_position())
 	
+	# not adding this in just yet
+	#if len(hunters_around) > 0:
+		#praySpeedBoost = 4
+	
 	# add the acceleration to the vecocity, but dont allow the boid to move faster then the speed
-	velocity = (velocity + accel).normalized() * Globals.BoidSpeed
+	velocity = (velocity + accel).normalized() * (Globals.BoidSpeed + praySpeedBoost)
 	rotation = velocity.angle() # rotate the boid so that the sprite matches the direction of motion
 	position += velocity # update the position (dont care about sliding or colliding)
 	
